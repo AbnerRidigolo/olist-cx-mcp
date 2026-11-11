@@ -1,0 +1,108 @@
+{
+  "total": 40968,
+  "por_motivo": [
+    {
+      "motivo": "elogio",
+      "n": 23586,
+      "pct": 57.6,
+      "nota_media": 4.72,
+      "confianca_mediana": 0.969,
+      "pct_conf_abaixo_05": 4.3
+    },
+    {
+      "motivo": "atraso_ou_nao_entrega",
+      "n": 5688,
+      "pct": 13.9,
+      "nota_media": 1.89,
+      "confianca_mediana": 0.856,
+      "pct_conf_abaixo_05": 12.9
+    },
+    {
+      "motivo": "produto_errado_ou_incompleto",
+      "n": 4382,
+      "pct": 10.7,
+      "nota_media": 1.95,
+      "confianca_mediana": 0.837,
+      "pct_conf_abaixo_05": 13.4
+    },
+    {
+      "motivo": "qualidade_abaixo_do_esperado",
+      "n": 2760,
+      "pct": 6.7,
+      "nota_media": 2.96,
+      "confianca_mediana": 0.749,
+      "pct_conf_abaixo_05": 21.3
+    },
+    {
+      "motivo": "defeito_ou_avaria",
+      "n": 1885,
+      "pct": 4.6,
+      "nota_media": 2.39,
+      "confianca_mediana": 0.815,
+      "pct_conf_abaixo_05": 19.6
+    },
+    {
+      "motivo": "atendimento_vendedor",
+      "n": 1339,
+      "pct": 3.3,
+      "nota_media": 2.0,
+      "confianca_mediana": 0.68,
+      "pct_conf_abaixo_05": 29.9
+    },
+    {
+      "motivo": "outro",
+      "n": 1328,
+      "pct": 3.2,
+      "nota_media": 3.23,
+      "confianca_mediana": 0.575,
+      "pct_conf_abaixo_05": 38.9
+    }
+  ],
+  "motivo_x_nota": {
+    "1": {
+      "atendimento_vendedor": 821,
+      "atraso_ou_nao_entrega": 3534,
+      "defeito_ou_avaria": 757,
+      "elogio": 209,
+      "outro": 310,
+      "produto_errado_ou_incompleto": 2447,
+      "qualidade_abaixo_do_esperado": 667
+    },
+    "2": {
+      "atendimento_vendedor": 95,
+      "atraso_ou_nao_entrega": 589,
+      "defeito_ou_avaria": 276,
+      "elogio": 102,
+      "outro": 107,
+      "produto_errado_ou_incompleto": 624,
+      "qualidade_abaixo_do_esperado": 352
+    },
+    "3": {
+      "atendimento_vendedor": 161,
+      "atraso_ou_nao_entrega": 660,
+      "defeito_ou_avaria": 378,
+      "elogio": 794,
+      "outro": 243,
+      "produto_errado_ou_incompleto": 679,
+      "qualidade_abaixo_do_esperado": 642
+    },
+    "4": {
+      "atendimento_vendedor": 121,
+      "atraso_ou_nao_entrega": 445,
+      "defeito_ou_avaria": 310,
+      "elogio": 3844,
+      "outro": 302,
+      "produto_errado_ou_incompleto": 340,
+      "qualidade_abaixo_do_esperado": 611
+    },
+    "5": {
+      "atendimento_vendedor": 141,
+      "atraso_ou_nao_entrega": 460,
+      "defeito_ou_avaria": 164,
+      "elogio": 18637,
+      "outro": 366,
+      "produto_errado_ou_incompleto": 292,
+      "qualidade_abaixo_do_esperado": 488
+    }
+  }
+}

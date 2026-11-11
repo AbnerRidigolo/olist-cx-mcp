@@ -9,3 +9,7 @@ data/*.duckdb.wal
 data/processed/
 models/*
 !models/README.md
+!models/motivo/
+models/motivo/*
+!models/motivo/modelo.joblib
+*.egg-info/

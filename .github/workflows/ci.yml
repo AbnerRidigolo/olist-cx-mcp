@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    name: pytest (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+      - name: Instala dependências fixadas
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python -m pip install --no-deps -e .
+      - name: Testes
+        env:
+          PYTHONUTF8: "1"
+        run: python -m pytest -q
+
+  docker:
+    name: imagem Docker (HTTP)
+    runs-on: ubuntu-latest
+    needs: testes
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Build (baixa o dataset público e monta o banco)
+        run: docker build -t olist-cx-mcp:ci .
+      - name: Sobe o contêiner e chama uma ferramenta via Streamable HTTP
+        run: |
+          docker run -d --name cx -p 8000:8000 olist-cx-mcp:ci
+          python -m pip install "mcp[cli]==2.3.0"
+          python scripts/verificar_http.py http://127.0.0.1:8000/mcp
+      - name: Logs do contêiner
+        if: always()
+        run: docker logs cx || true
