@@ -1,0 +1,9 @@
+# Só o que o servidor precisa em execução (imagem Docker). Versões fixadas; Python 3.11.
+mcp[cli]==2.3.0
+pydantic==2.14.3
+duckdb==2.0.0
+numpy==2.1.3
+scipy==1.17.1
+scikit-learn==1.9.1   # mesma versão usada para treinar o modelo.joblib
+joblib==1.6.0
+python-dotenv==1.0.1
