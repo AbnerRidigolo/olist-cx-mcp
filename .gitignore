@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
+data/raw/
+data/*.duckdb
+data/*.duckdb.wal
+data/processed/
+models/*
+!models/README.md
