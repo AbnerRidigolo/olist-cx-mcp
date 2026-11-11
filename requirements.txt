@@ -8,3 +8,6 @@ scipy==1.17.1
 joblib==1.6.0
 kagglehub==0.3.12
 python-dotenv==1.0.1
+# Fase 1: servidor MCP
+mcp[cli]==2.3.0
+pydantic==2.14.3
