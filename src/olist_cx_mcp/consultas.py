@@ -282,9 +282,11 @@ class Banco:
             FROM cx_pedido_vendedor pv JOIN cx_pedidos p USING (order_id) WHERE pv.vendedor_id = ?
         """, v)[0]
         cats = self._linhas("""
-            SELECT c.categoria, count(DISTINCT c.order_id) AS pedidos
-            FROM cx_pedido_vendedor pv JOIN cx_pedido_categoria c USING (order_id)
-            WHERE pv.vendedor_id = ? GROUP BY 1 ORDER BY 2 DESC, 1 LIMIT 5
+            -- só os itens do próprio vendedor (um pedido pode ter itens de outros vendedores)
+            SELECT coalesce(pr.product_category_name, 'sem_categoria') AS categoria,
+                   count(DISTINCT i.order_id) AS pedidos
+            FROM itens i JOIN produtos pr USING (product_id)
+            WHERE i.seller_id = ? GROUP BY 1 ORDER BY 2 DESC, 1 LIMIT 5
         """, v)
         av = self._linhas("""
             SELECT count(*) AS n, avg(nota) AS nota, 100.0 * avg(CASE WHEN nota <= 2 THEN 1 ELSE 0 END) AS pct_baixa,
