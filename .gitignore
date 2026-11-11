@@ -12,3 +12,4 @@ models/*
 !models/motivo/
 models/motivo/*
 !models/motivo/modelo.joblib
+*.egg-info/
