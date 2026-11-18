@@ -1,0 +1,45 @@
+{
+  "q01": {
+    "estado": "RJ",
+    "pct_reclamacao_atraso": 21.7,
+    "pct_pedidos_atrasados": 12.1
+  },
+  "q02": {
+    "vendedor_id": "6560211a19b47992c3666cc44a7e94c0",
+    "nota_media": 3.94
+  },
+  "q03": {
+    "categoria": "informatica_acessorios",
+    "pct_pedidos_atrasados": 6.4
+  },
+  "q04": {
+    "rota": "SP->RJ",
+    "pct_pedidos_atrasados": 14.1,
+    "motivo_sem_elogio": "atraso_ou_nao_entrega"
+  },
+  "q05": {
+    "fevereiro": 314,
+    "marco": 392
+  },
+  "q06": {
+    "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+    "pct_pedidos_atrasados": 9.7
+  },
+  "q07": {
+    "mes": "2018-03",
+    "pct_pedidos_atrasados": 9.4
+  },
+  "q08": {
+    "categoria": "cama_mesa_banho",
+    "pct_qualidade_abaixo": 14.1
+  },
+  "q09": {
+    "motivo": "defeito_ou_avaria",
+    "n_avaliacoes": 91
+  },
+  "q10": {
+    "mes": "2018-03",
+    "pct_reclamacao_atraso": 26.5,
+    "pct_atrasados_compras_mes_anterior": 14.1
+  }
+}
