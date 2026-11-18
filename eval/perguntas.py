@@ -1,4 +1,4 @@
-"""10 perguntas de analista de CX, cada uma exigindo várias chamadas, com gabarito calculado por SQL.
+"""14 perguntas de analista de CX, cada uma exigindo várias chamadas, com gabarito calculado por SQL.
 
 O gabarito lê só as tabelas brutas (pedidos, itens, clientes, produtos, avaliacoes) e `motivos` (saída do
 classificador). Não usa as tabelas cx_* nem o código das ferramentas, para conferir o servidor de forma
@@ -96,7 +96,11 @@ def g5(con):
     r = dict(_linhas(con, f"""SELECT strftime(data_av, '%Y-%m'), count(*) FROM {AV}
                               WHERE motivo = 'produto_errado_ou_incompleto'
                                 AND data_av BETWEEN '2018-02-01' AND '2018-03-31' GROUP BY 1"""))
-    return {"fevereiro": r["2018-02"], "marco": r["2018-03"]}
+    mes = "2018-03" if r["2018-03"] > r["2018-02"] else "2018-02"
+    uf = _linhas(con, f"""SELECT uf, count(*) n FROM {AV} WHERE motivo = 'produto_errado_ou_incompleto'
+                          AND strftime(data_av, '%Y-%m') = ? GROUP BY 1 ORDER BY n DESC""", [mes])
+    _sem_empate(uf, casas=0)
+    return {"fevereiro": r["2018-02"], "marco": r["2018-03"], "estado_mes_maior": uf[0][0]}
 
 
 def g6(con):
@@ -115,7 +119,14 @@ def g7(con):
                          WHERE uf = 'SP' AND data_compra BETWEEN '2018-01-01' AND '2018-08-31'
                          GROUP BY 1 ORDER BY p DESC""")
     _sem_empate(r)
-    return {"mes": r[0][0], "pct_pedidos_atrasados": round(r[0][1], 1)}
+    mes = r[0][0]
+    v = _linhas(con, f"""SELECT seller_id, 100.0 * avg(atrasado::INT) p, count(*) n FROM (
+                           SELECT DISTINCT e.order_id, e.atrasado, i.seller_id FROM {ENT} e JOIN itens i USING (order_id)
+                           WHERE e.uf = 'SP' AND strftime(e.data_compra, '%Y-%m') = ?)
+                         GROUP BY 1 HAVING count(*) >= 30 ORDER BY p DESC""", [mes])
+    _sem_empate(v)
+    return {"mes": mes, "pct_pedidos_atrasados": round(r[0][1], 1), "vendedor_id": v[0][0],
+            "pct_vendedor": round(v[0][1], 1)}
 
 
 VENDEDOR_Q8 = "4a3ca9315b744ce9f8e9374361493884"
@@ -156,6 +167,50 @@ def g10(con):
     return {"mes": mes, "pct_reclamacao_atraso": round(r[0][1], 1), "pct_atrasados_compras_mes_anterior": pct}
 
 
+def _por_vendedor(con, motivo: str, minimo: int):
+    """(vendedor, % do motivo, n) entre vendedores com pelo menos `minimo` avaliações classificadas."""
+    return _linhas(con, f"""SELECT seller_id, 100.0 * avg((motivo = ?)::INT) p, count(*) n FROM (
+                              SELECT DISTINCT x.review_id, x.order_id, x.motivo, i.seller_id
+                              FROM {AV} x JOIN itens i ON i.order_id = x.order_id)
+                            GROUP BY 1 HAVING count(*) >= ? ORDER BY p DESC""", [motivo, minimo])
+
+
+def g11(con):
+    r = _por_vendedor(con, "produto_errado_ou_incompleto", 50)
+    _sem_empate(r)
+    cidade = _linhas(con, "SELECT seller_city FROM vendedores WHERE seller_id = ?", [r[0][0]])[0][0]
+    return {"vendedor_id": r[0][0], "pct_produto_errado": round(r[0][1], 1), "cidade": cidade}
+
+
+def g12(con):
+    rec = dict(_linhas(con, f"""SELECT uf, 100.0 * avg((motivo = 'atraso_ou_nao_entrega')::INT) FROM {AV}
+                                WHERE uf IN ('MG', 'SP') GROUP BY 1"""))
+    return {"pct_reclamacao_atraso_mg": round(rec["MG"], 1), "pct_reclamacao_atraso_sp": round(rec["SP"], 1),
+            "pct_pedidos_atrasados_mg": _pct_atraso(con, "e.uf = 'MG'"),
+            "pct_pedidos_atrasados_sp": _pct_atraso(con, "e.uf = 'SP'")}
+
+
+CATEGORIA_Q13 = "relogios_presentes"
+
+
+def g13(con):
+    filtro = f"(SELECT i.order_id FROM itens i JOIN produtos pr USING (product_id) WHERE {CAT} = ?)"
+    m = _linhas(con, f"""SELECT motivo, count(*) n FROM {AV} WHERE nota <= 2 AND order_id IN {filtro}
+                         GROUP BY 1 ORDER BY n DESC""", [CATEGORIA_Q13])
+    _sem_empate(m, casas=0)
+    return {"pct_pedidos_atrasados": _pct_atraso(con, f"e.order_id IN {filtro}", [CATEGORIA_Q13]),
+            "motivo_negativas": m[0][0]}
+
+
+def g14(con):
+    r = _por_vendedor(con, "atraso_ou_nao_entrega", 5)
+    # nenhum vendedor entre 25,0% e 25,05%, onde o arredondamento de 1 casa das ferramentas mudaria a contagem
+    assert not any(25.0 < p < 25.05 for _, p, _ in r), "vendedor na fronteira de arredondamento"
+    n = sum(p > 25.0 for _, p, _ in r)
+    assert n > 100, "a pergunta deve exigir paginação (limite de 100 grupos por página)"
+    return {"n_vendedores": n}
+
+
 # ---------------------------------------------------------------- perguntas
 # chaves: "texto" = comparação exata (sem caixa/espaços); "numero" = tolerância absoluta
 
@@ -180,16 +235,18 @@ PERGUNTAS = [
      "chaves": {"rota": "texto", "pct_pedidos_atrasados": 0.15, "motivo_sem_elogio": "texto"}},
     {"id": "q05", "gabarito": g5,
      "pergunta": "Quantas avaliações foram classificadas como produto_errado_ou_incompleto em fevereiro de 2018 e "
-                 "quantas em março de 2018 (pela data da avaliação)?",
-     "chaves": {"fevereiro": 0, "marco": 0}},
+                 "quantas em março de 2018 (pela data da avaliação)? No mês com mais dessas avaliações, qual "
+                 "estado de cliente concentrou mais delas?",
+     "chaves": {"fevereiro": 0, "marco": 0, "estado_mes_maior": "texto"}},
     {"id": "q06", "gabarito": g6,
      "pergunta": "Considere os 3 vendedores com mais avaliações classificadas em toda a base. Qual deles tem a maior "
                  "taxa de pedidos entregues com atraso, e qual é essa taxa?",
      "chaves": {"vendedor_id": "texto", "pct_pedidos_atrasados": 0.15}},
     {"id": "q07", "gabarito": g7,
      "pergunta": "Para clientes de SP, em qual mês de compra entre janeiro e agosto de 2018 a taxa de pedidos "
-                 "entregues com atraso foi mais alta, e qual foi essa taxa?",
-     "chaves": {"mes": "texto", "pct_pedidos_atrasados": 0.15}},
+                 "entregues com atraso foi mais alta, e qual foi essa taxa? Nesse mês, entre os vendedores com pelo "
+                 "menos 30 pedidos entregues a clientes de SP, qual teve a maior taxa de atraso, e qual foi ela?",
+     "chaves": {"mes": "texto", "pct_pedidos_atrasados": 0.15, "vendedor_id": "texto", "pct_vendedor": 0.15}},
     {"id": "q08", "gabarito": g8,
      "pergunta": f"Qual é a categoria em que o vendedor {VENDEDOR_Q8} tem mais pedidos? Entre as avaliações "
                  "classificadas dos pedidos desse vendedor nessa categoria, qual o percentual com motivo "
@@ -204,6 +261,26 @@ PERGUNTAS = [
                  "avaliações classificadas foi maior, e qual foi esse percentual? Qual foi a taxa de pedidos "
                  "entregues com atraso entre as compras feitas no mês anterior a esse?",
      "chaves": {"mes": "texto", "pct_reclamacao_atraso": 0.15, "pct_atrasados_compras_mes_anterior": 0.15}},
+    # q11-q14: linguagem de analista (sem nomes de ferramentas nem de motivos), paginação e nomes por extenso
+    {"id": "q11", "gabarito": g11,
+     "pergunta": "Quais lojas mais recebem reclamações de clientes que receberam um produto diferente do que pediram "
+                 "ou com itens faltando? Entre as lojas com pelo menos 50 avaliações com comentário, diga qual tem a "
+                 "maior proporção desse tipo de reclamação, qual é essa proporção e em que cidade a loja fica.",
+     "chaves": {"vendedor_id": "texto", "pct_produto_errado": 0.15, "cidade": "texto"}},
+    {"id": "q12", "gabarito": g12,
+     "pergunta": "Os clientes de Minas Gerais reclamam mais de atraso do que os de São Paulo? Para cada um dos dois "
+                 "estados, quero a proporção de reclamações de atraso ou não entrega entre as avaliações com "
+                 "comentário e a taxa de pedidos entregues fora do prazo.",
+     "chaves": {"pct_reclamacao_atraso_mg": 0.15, "pct_reclamacao_atraso_sp": 0.15,
+                "pct_pedidos_atrasados_mg": 0.15, "pct_pedidos_atrasados_sp": 0.15}},
+    {"id": "q13", "gabarito": g13,
+     "pergunta": "Como está a categoria de relógios e presentes? Quero a taxa de pedidos entregues com atraso e o "
+                 "motivo mais comum entre as avaliações negativas (nota 1 ou 2) com comentário dessa categoria.",
+     "chaves": {"pct_pedidos_atrasados": 0.15, "motivo_negativas": "texto"}},
+    {"id": "q14", "gabarito": g14,
+     "pergunta": "Quantos vendedores com pelo menos 5 avaliações com comentário têm mais de 25% dessas avaliações "
+                 "reclamando de atraso ou não entrega?",
+     "chaves": {"n_vendedores": 0}},
 ]
 
 

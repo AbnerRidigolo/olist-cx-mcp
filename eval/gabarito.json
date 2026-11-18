@@ -19,7 +19,8 @@
   },
   "q05": {
     "fevereiro": 314,
-    "marco": 392
+    "marco": 392,
+    "estado_mes_maior": "SP"
   },
   "q06": {
     "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
@@ -27,7 +28,9 @@
   },
   "q07": {
     "mes": "2018-03",
-    "pct_pedidos_atrasados": 9.4
+    "pct_pedidos_atrasados": 9.4,
+    "vendedor_id": "4869f7a5dfa277a7dca6462dcf3b52b2",
+    "pct_vendedor": 20.0
   },
   "q08": {
     "categoria": "cama_mesa_banho",
@@ -41,5 +44,23 @@
     "mes": "2018-03",
     "pct_reclamacao_atraso": 26.5,
     "pct_atrasados_compras_mes_anterior": 14.1
+  },
+  "q11": {
+    "vendedor_id": "710e3548e02bc1d2831dfc4f1b5b14d4",
+    "pct_produto_errado": 41.8,
+    "cidade": "rolandia"
+  },
+  "q12": {
+    "pct_reclamacao_atraso_mg": 10.1,
+    "pct_reclamacao_atraso_sp": 11.4,
+    "pct_pedidos_atrasados_mg": 4.6,
+    "pct_pedidos_atrasados_sp": 4.5
+  },
+  "q13": {
+    "pct_pedidos_atrasados": 7.4,
+    "motivo_negativas": "atraso_ou_nao_entrega"
+  },
+  "q14": {
+    "n_vendedores": 145
   }
 }
