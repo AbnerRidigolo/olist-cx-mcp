@@ -1,2 +1,4 @@
 -r requirements.txt
 pytest==9.2.0
+# Fase 3: avaliação com Claude como cliente MCP
+anthropic==2.5.0

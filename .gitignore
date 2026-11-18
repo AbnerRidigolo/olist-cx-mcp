@@ -13,3 +13,4 @@ models/*
 models/motivo/*
 !models/motivo/modelo.joblib
 *.egg-info/
+eval/resultados/*.tmp
