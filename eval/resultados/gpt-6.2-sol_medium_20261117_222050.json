@@ -1,0 +1,2773 @@
+{
+  "resumo": {
+    "modelo": "gpt-6.2-sol",
+    "provedor": "openai",
+    "esforco": "medium",
+    "repeticoes": 3,
+    "data_utc": "2026-11-18T01:20:50+00:00",
+    "sdk": "3.46.0",
+    "respondidas": 42,
+    "acertos": 41,
+    "taxa_acerto": 0.976,
+    "acertos_por_pergunta": {
+      "q01": "3/3",
+      "q02": "3/3",
+      "q03": "3/3",
+      "q04": "3/3",
+      "q05": "3/3",
+      "q06": "3/3",
+      "q07": "3/3",
+      "q08": "3/3",
+      "q09": "3/3",
+      "q10": "3/3",
+      "q11": "2/3",
+      "q12": "3/3",
+      "q13": "3/3",
+      "q14": "3/3"
+    },
+    "chamadas_media": 2.71,
+    "erros_ferramenta": 0,
+    "custo_total_usd": 0.306,
+    "custo_medio_usd": 0.0073,
+    "com_fallback": 0,
+    "orcamento_estourado": false,
+    "tokens": {
+      "input_tokens": 93408,
+      "output_tokens": 7035,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 488692
+    }
+  },
+  "registros": [
+    {
+      "resposta": {
+        "estado": "RJ",
+        "pct_reclamacao_atraso": 21.7,
+        "pct_pedidos_atrasados": 12.1
+      },
+      "texto_final": "RESPOSTA: {\"estado\":\"RJ\",\"pct_reclamacao_atraso\":21.7,\"pct_pedidos_atrasados\":12.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "estado_cliente",
+            "min_avaliacoes": 1000,
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "RJ"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 108,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9450
+      },
+      "custo_usd": 0.00311,
+      "segundos": 6.1,
+      "id": "q01",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "estado": {
+          "esperado": "RJ",
+          "obtido": "RJ",
+          "ok": true
+        },
+        "pct_reclamacao_atraso": {
+          "esperado": 21.7,
+          "obtido": 21.7,
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 12.1,
+          "obtido": 12.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "6560211a19b47992c3666cc44a7e94c0",
+        "nota_media": 3.94
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"6560211a19b47992c3666cc44a7e94c0\", \"nota_media\": 3.94}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "total",
+            "nota_min": 1,
+            "nota_max": 2,
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-12-31",
+            "limit": 3
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "6560211a19b47992c3666cc44a7e94c0",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 2905,
+        "output_tokens": 152,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9075
+      },
+      "custo_usd": 0.00824,
+      "segundos": 5.9,
+      "id": "q02",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "6560211a19b47992c3666cc44a7e94c0",
+          "obtido": "6560211a19b47992c3666cc44a7e94c0",
+          "ok": true
+        },
+        "nota_media": {
+          "esperado": 3.94,
+          "obtido": 3.94,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "categoria": "informatica_acessorios",
+        "pct_pedidos_atrasados": 6.4
+      },
+      "texto_final": "RESPOSTA: {\"categoria\": \"informatica_acessorios\", \"pct_pedidos_atrasados\": 6.4}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "categoria",
+            "limit": 100
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "categoria": "informatica_acessorios"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 83,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 43307
+      },
+      "custo_usd": 0.00625,
+      "segundos": 6.3,
+      "id": "q03",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "categoria": {
+          "esperado": "informatica_acessorios",
+          "obtido": "informatica_acessorios",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 6.4,
+          "obtido": 6.4,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "rota": "SP->RJ",
+        "pct_pedidos_atrasados": 14.1,
+        "motivo_sem_elogio": "atraso_ou_nao_entrega"
+      },
+      "texto_final": "RESPOSTA: {\"rota\":\"SP->RJ\",\"pct_pedidos_atrasados\":14.1,\"motivo_sem_elogio\":\"atraso_ou_nao_entrega\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "agrupar_por": "rota",
+            "ordenar_por": "pct_atrasados",
+            "min_pedidos": 500,
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "RJ"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 1323,
+        "output_tokens": 108,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 8353
+      },
+      "custo_usd": 0.00456,
+      "segundos": 5.0,
+      "id": "q04",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "rota": {
+          "esperado": "SP->RJ",
+          "obtido": "SP->RJ",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        },
+        "motivo_sem_elogio": {
+          "esperado": "atraso_ou_nao_entrega",
+          "obtido": "atraso_ou_nao_entrega",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "fevereiro": 314,
+        "marco": 392,
+        "estado_mes_maior": "SP"
+      },
+      "texto_final": "RESPOSTA: {\"fevereiro\": 314, \"marco\": 392, \"estado_mes_maior\": \"SP\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "mes",
+            "data_inicio": "2018-02-01",
+            "data_fim": "2018-03-31"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "estado_cliente",
+            "data_inicio": "2018-03-01",
+            "data_fim": "2018-03-31",
+            "limit": 27
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 7578,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 8668
+      },
+      "custo_usd": 0.01726,
+      "segundos": 5.4,
+      "id": "q05",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "fevereiro": {
+          "esperado": 314,
+          "obtido": 314,
+          "ok": true
+        },
+        "marco": {
+          "esperado": 392,
+          "obtido": 392,
+          "ok": true
+        },
+        "estado_mes_maior": {
+          "esperado": "SP",
+          "obtido": "SP",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+        "pct_pedidos_atrasados": 9.7
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"4a3ca9315b744ce9f8e9374361493884\", \"pct_pedidos_atrasados\": 9.7}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 4,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "total",
+            "limit": 3
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "6560211a19b47992c3666cc44a7e94c0"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "cc419e0650a3c5ba77189a1882b7556a"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 208,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10950
+      },
+      "custo_usd": 0.00426,
+      "segundos": 5.8,
+      "id": "q06",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "4a3ca9315b744ce9f8e9374361493884",
+          "obtido": "4a3ca9315b744ce9f8e9374361493884",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 9.7,
+          "obtido": 9.7,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "mes": "2018-03",
+        "pct_pedidos_atrasados": 9.4,
+        "vendedor_id": "4869f7a5dfa277a7dca6462dcf3b52b2",
+        "pct_vendedor": 20.0
+      },
+      "texto_final": "RESPOSTA: {\"mes\": \"2018-03\", \"pct_pedidos_atrasados\": 9.4, \"vendedor_id\": \"4869f7a5dfa277a7dca6462dcf3b52b2\", \"pct_vendedor\": 20.0}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "SP",
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-08-31",
+            "agrupar_por": "mes",
+            "ordenar_por": "pct_atrasados",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "SP",
+            "data_inicio": "2018-03-01",
+            "data_fim": "2018-03-31",
+            "agrupar_por": "vendedor",
+            "min_pedidos": 30,
+            "ordenar_por": "pct_atrasados",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 1595,
+        "output_tokens": 201,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 8296
+      },
+      "custo_usd": 0.00603,
+      "segundos": 5.9,
+      "id": "q07",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "mes": {
+          "esperado": "2018-03",
+          "obtido": "2018-03",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 9.4,
+          "obtido": 9.4,
+          "ok": true
+        },
+        "vendedor_id": {
+          "esperado": "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "obtido": "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "ok": true
+        },
+        "pct_vendedor": {
+          "esperado": 20.0,
+          "obtido": 20.0,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "categoria": "cama_mesa_banho",
+        "pct_qualidade_abaixo": 14.1
+      },
+      "texto_final": "RESPOSTA: {\"categoria\": \"cama_mesa_banho\", \"pct_qualidade_abaixo\": 14.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+            "categoria": "cama_mesa_banho"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 2003,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 8968
+      },
+      "custo_usd": 0.00614,
+      "segundos": 4.6,
+      "id": "q08",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "categoria": {
+          "esperado": "cama_mesa_banho",
+          "obtido": "cama_mesa_banho",
+          "ok": true
+        },
+        "pct_qualidade_abaixo": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "motivo": "defeito_ou_avaria",
+        "n_avaliacoes": 91
+      },
+      "texto_final": "RESPOSTA: {\"motivo\": \"defeito_ou_avaria\", \"n_avaliacoes\": 91}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_classify_review",
+          "args": {
+            "texto": "O produto chegou todo quebrado e a loja não responde minhas mensagens"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "RJ",
+            "nota_min": 1,
+            "nota_max": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 362,
+        "output_tokens": 104,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5867
+      },
+      "custo_usd": 0.00235,
+      "segundos": 6.6,
+      "id": "q09",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "motivo": {
+          "esperado": "defeito_ou_avaria",
+          "obtido": "defeito_ou_avaria",
+          "ok": true
+        },
+        "n_avaliacoes": {
+          "esperado": 91,
+          "obtido": 91,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "mes": "2018-03",
+        "pct_reclamacao_atraso": 26.5,
+        "pct_atrasados_compras_mes_anterior": 14.1
+      },
+      "texto_final": "RESPOSTA: {\"mes\": \"2018-03\", \"pct_reclamacao_atraso\": 26.5, \"pct_atrasados_compras_mes_anterior\": 14.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "mes",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-12-31",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "data_inicio": "2018-02-01",
+            "data_fim": "2018-02-28"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 146,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9504
+      },
+      "custo_usd": 0.0035,
+      "segundos": 4.8,
+      "id": "q10",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "mes": {
+          "esperado": "2018-03",
+          "obtido": "2018-03",
+          "ok": true
+        },
+        "pct_reclamacao_atraso": {
+          "esperado": 26.5,
+          "obtido": 26.5,
+          "ok": true
+        },
+        "pct_atrasados_compras_mes_anterior": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "710e3548e02bc1d2831dfc4f1b5b14d4",
+        "pct_produto_errado": 41.8,
+        "cidade": "rolandia"
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"710e3548e02bc1d2831dfc4f1b5b14d4\", \"pct_produto_errado\": 41.8, \"cidade\": \"rolandia\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "min_avaliacoes": 50,
+            "ordenar_por": "produto_errado_ou_incompleto",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "710e3548e02bc1d2831dfc4f1b5b14d4",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 2448,
+        "output_tokens": 152,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 8519
+      },
+      "custo_usd": 0.00727,
+      "segundos": 5.8,
+      "id": "q11",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "710e3548e02bc1d2831dfc4f1b5b14d4",
+          "obtido": "710e3548e02bc1d2831dfc4f1b5b14d4",
+          "ok": true
+        },
+        "pct_produto_errado": {
+          "esperado": 41.8,
+          "obtido": 41.8,
+          "ok": true
+        },
+        "cidade": {
+          "esperado": "rolandia",
+          "obtido": "rolandia",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "pct_reclamacao_atraso_mg": 10.1,
+        "pct_reclamacao_atraso_sp": 11.4,
+        "pct_pedidos_atrasados_mg": 4.6,
+        "pct_pedidos_atrasados_sp": 4.5
+      },
+      "texto_final": "Não. Entre as avaliações com comentário classificadas, a proporção de reclamações por atraso ou não entrega foi menor em Minas Gerais (10,1%) do que em São Paulo (11,4%). Já entre os pedidos entregues, a taxa de atraso foi ligeiramente maior em Minas Gerais (4,6%) do que em São Paulo (4,5%).\n\nRESPOSTA: {\"pct_reclamacao_atraso_mg\": 10.1, \"pct_reclamacao_atraso_sp\": 11.4, \"pct_pedidos_atrasados_mg\": 4.6, \"pct_pedidos_atrasados_sp\": 4.5}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 4,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "MG"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "SP"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "MG"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "SP"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 1628,
+        "output_tokens": 232,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5197
+      },
+      "custo_usd": 0.0061,
+      "segundos": 4.9,
+      "id": "q12",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "pct_reclamacao_atraso_mg": {
+          "esperado": 10.1,
+          "obtido": 10.1,
+          "ok": true
+        },
+        "pct_reclamacao_atraso_sp": {
+          "esperado": 11.4,
+          "obtido": 11.4,
+          "ok": true
+        },
+        "pct_pedidos_atrasados_mg": {
+          "esperado": 4.6,
+          "obtido": 4.6,
+          "ok": true
+        },
+        "pct_pedidos_atrasados_sp": {
+          "esperado": 4.5,
+          "obtido": 4.5,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "pct_pedidos_atrasados": 7.4,
+        "motivo_negativas": "atraso_ou_nao_entrega"
+      },
+      "texto_final": "RESPOSTA: {\"pct_pedidos_atrasados\": 7.4, \"motivo_negativas\": \"atraso_ou_nao_entrega\"}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "categoria": "relogios_presentes"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "categoria": "relogios_presentes",
+            "nota_min": 1,
+            "nota_max": 2
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 1030,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5155
+      },
+      "custo_usd": 0.00367,
+      "segundos": 4.4,
+      "id": "q13",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "pct_pedidos_atrasados": {
+          "esperado": 7.4,
+          "obtido": 7.4,
+          "ok": true
+        },
+        "motivo_negativas": {
+          "esperado": "atraso_ou_nao_entrega",
+          "obtido": "atraso_ou_nao_entrega",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "n_vendedores": 145
+      },
+      "texto_final": "RESPOSTA: {\"n_vendedores\": 145}",
+      "stop_reason": "completed",
+      "turnos": 5,
+      "n_chamadas": 6,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "min_avaliacoes": 5,
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "limit": 1,
+            "offset": 99
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "min_avaliacoes": 5,
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "limit": 1,
+            "offset": 149
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "min_avaliacoes": 5,
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "limit": 1,
+            "offset": 199
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "min_avaliacoes": 5,
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "limit": 1,
+            "offset": 124
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "min_avaliacoes": 5,
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "limit": 1,
+            "offset": 137
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "min_avaliacoes": 5,
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "limit": 12,
+            "offset": 138
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 8056,
+        "output_tokens": 358,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 19200
+      },
+      "custo_usd": 0.02161,
+      "segundos": 10.6,
+      "id": "q14",
+      "repeticao": 1,
+      "correta": true,
+      "chaves": {
+        "n_vendedores": {
+          "esperado": 145,
+          "obtido": 145,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "estado": "RJ",
+        "pct_reclamacao_atraso": 21.7,
+        "pct_pedidos_atrasados": 12.1
+      },
+      "texto_final": "RESPOSTA: {\"estado\": \"RJ\", \"pct_reclamacao_atraso\": 21.7, \"pct_pedidos_atrasados\": 12.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "estado_cliente",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 1000,
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "RJ"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9450
+      },
+      "custo_usd": 0.00316,
+      "segundos": 4.8,
+      "id": "q01",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "estado": {
+          "esperado": "RJ",
+          "obtido": "RJ",
+          "ok": true
+        },
+        "pct_reclamacao_atraso": {
+          "esperado": 21.7,
+          "obtido": 21.7,
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 12.1,
+          "obtido": 12.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "6560211a19b47992c3666cc44a7e94c0",
+        "nota_media": 3.94
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"6560211a19b47992c3666cc44a7e94c0\", \"nota_media\": 3.94}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "total",
+            "nota_min": 1,
+            "nota_max": 2,
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-12-31",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "6560211a19b47992c3666cc44a7e94c0",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 1648,
+        "output_tokens": 152,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9244
+      },
+      "custo_usd": 0.00574,
+      "segundos": 5.3,
+      "id": "q02",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "6560211a19b47992c3666cc44a7e94c0",
+          "obtido": "6560211a19b47992c3666cc44a7e94c0",
+          "ok": true
+        },
+        "nota_media": {
+          "esperado": 3.94,
+          "obtido": 3.94,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "categoria": "informatica_acessorios",
+        "pct_pedidos_atrasados": 6.4
+      },
+      "texto_final": "RESPOSTA: {\"categoria\": \"informatica_acessorios\", \"pct_pedidos_atrasados\": 6.4}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 3,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "categoria",
+            "ordenar_por": "total",
+            "limit": 20
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "categoria",
+            "ordenar_por": "defeito_ou_avaria",
+            "limit": 8
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "categoria": "informatica_acessorios"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 8227,
+        "output_tokens": 221,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 12847
+      },
+      "custo_usd": 0.01995,
+      "segundos": 6.2,
+      "id": "q03",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "categoria": {
+          "esperado": "informatica_acessorios",
+          "obtido": "informatica_acessorios",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 6.4,
+          "obtido": 6.4,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "rota": "SP->RJ",
+        "pct_pedidos_atrasados": 14.1,
+        "motivo_sem_elogio": "atraso_ou_nao_entrega"
+      },
+      "texto_final": "RESPOSTA: {\"rota\": \"SP->RJ\", \"pct_pedidos_atrasados\": 14.1, \"motivo_sem_elogio\": \"atraso_ou_nao_entrega\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "agrupar_por": "rota",
+            "min_pedidos": 500,
+            "ordenar_por": "pct_atrasados",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "RJ"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9133
+      },
+      "custo_usd": 0.00313,
+      "segundos": 4.7,
+      "id": "q04",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "rota": {
+          "esperado": "SP->RJ",
+          "obtido": "SP->RJ",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        },
+        "motivo_sem_elogio": {
+          "esperado": "atraso_ou_nao_entrega",
+          "obtido": "atraso_ou_nao_entrega",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "fevereiro": 314,
+        "marco": 392,
+        "estado_mes_maior": "SP"
+      },
+      "texto_final": "RESPOSTA: {\"fevereiro\": 314, \"marco\": 392, \"estado_mes_maior\": \"SP\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 3,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_search_reviews",
+          "args": {
+            "motivo": "produto_errado_ou_incompleto",
+            "data_inicio": "2018-02-01",
+            "data_fim": "2018-02-28",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_search_reviews",
+          "args": {
+            "motivo": "produto_errado_ou_incompleto",
+            "data_inicio": "2018-03-01",
+            "data_fim": "2018-03-31",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "estado_cliente",
+            "data_inicio": "2018-03-01",
+            "data_fim": "2018-03-31",
+            "limit": 27
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 7311,
+        "output_tokens": 196,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 8567
+      },
+      "custo_usd": 0.01744,
+      "segundos": 5.8,
+      "id": "q05",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "fevereiro": {
+          "esperado": 314,
+          "obtido": 314,
+          "ok": true
+        },
+        "marco": {
+          "esperado": 392,
+          "obtido": 392,
+          "ok": true
+        },
+        "estado_mes_maior": {
+          "esperado": "SP",
+          "obtido": "SP",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+        "pct_pedidos_atrasados": 9.7
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"4a3ca9315b744ce9f8e9374361493884\", \"pct_pedidos_atrasados\": 9.7}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 4,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "total",
+            "limit": 3
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "6560211a19b47992c3666cc44a7e94c0"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "cc419e0650a3c5ba77189a1882b7556a"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 208,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10950
+      },
+      "custo_usd": 0.00426,
+      "segundos": 5.6,
+      "id": "q06",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "4a3ca9315b744ce9f8e9374361493884",
+          "obtido": "4a3ca9315b744ce9f8e9374361493884",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 9.7,
+          "obtido": 9.7,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "mes": "2018-03",
+        "pct_pedidos_atrasados": 9.4,
+        "vendedor_id": "4869f7a5dfa277a7dca6462dcf3b52b2",
+        "pct_vendedor": 20.0
+      },
+      "texto_final": "RESPOSTA: {\"mes\": \"2018-03\", \"pct_pedidos_atrasados\": 9.4, \"vendedor_id\": \"4869f7a5dfa277a7dca6462dcf3b52b2\", \"pct_vendedor\": 20.0}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "agrupar_por": "mes",
+            "estado_cliente": "SP",
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-08-31",
+            "ordenar_por": "pct_atrasados",
+            "limit": 8
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "agrupar_por": "vendedor",
+            "estado_cliente": "SP",
+            "data_inicio": "2018-03-01",
+            "data_fim": "2018-03-31",
+            "min_pedidos": 30,
+            "ordenar_por": "pct_atrasados",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 2430,
+        "output_tokens": 201,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9349
+      },
+      "custo_usd": 0.0078,
+      "segundos": 5.8,
+      "id": "q07",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "mes": {
+          "esperado": "2018-03",
+          "obtido": "2018-03",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 9.4,
+          "obtido": 9.4,
+          "ok": true
+        },
+        "vendedor_id": {
+          "esperado": "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "obtido": "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "ok": true
+        },
+        "pct_vendedor": {
+          "esperado": 20.0,
+          "obtido": 20.0,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "categoria": "cama_mesa_banho",
+        "pct_qualidade_abaixo": 14.1
+      },
+      "texto_final": "RESPOSTA: {\"categoria\":\"cama_mesa_banho\",\"pct_qualidade_abaixo\":14.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+            "categoria": "cama_mesa_banho"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 121,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10428
+      },
+      "custo_usd": 0.00334,
+      "segundos": 5.3,
+      "id": "q08",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "categoria": {
+          "esperado": "cama_mesa_banho",
+          "obtido": "cama_mesa_banho",
+          "ok": true
+        },
+        "pct_qualidade_abaixo": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "motivo": "defeito_ou_avaria",
+        "n_avaliacoes": 91
+      },
+      "texto_final": "RESPOSTA: {\"motivo\": \"defeito_ou_avaria\", \"n_avaliacoes\": 91}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_classify_review",
+          "args": {
+            "texto": "O produto chegou todo quebrado e a loja não responde minhas mensagens"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "RJ",
+            "nota_min": 1,
+            "nota_max": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 362,
+        "output_tokens": 104,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5867
+      },
+      "custo_usd": 0.00235,
+      "segundos": 4.1,
+      "id": "q09",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "motivo": {
+          "esperado": "defeito_ou_avaria",
+          "obtido": "defeito_ou_avaria",
+          "ok": true
+        },
+        "n_avaliacoes": {
+          "esperado": 91,
+          "obtido": 91,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "mes": "2018-03",
+        "pct_reclamacao_atraso": 26.5,
+        "pct_atrasados_compras_mes_anterior": 14.1
+      },
+      "texto_final": "RESPOSTA: {\"mes\": \"2018-03\", \"pct_reclamacao_atraso\": 26.5, \"pct_atrasados_compras_mes_anterior\": 14.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "mes",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-12-31",
+            "limit": 12
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "data_inicio": "2018-02-01",
+            "data_fim": "2018-02-28"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 3128,
+        "output_tokens": 146,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10249
+      },
+      "custo_usd": 0.00874,
+      "segundos": 5.0,
+      "id": "q10",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "mes": {
+          "esperado": "2018-03",
+          "obtido": "2018-03",
+          "ok": true
+        },
+        "pct_reclamacao_atraso": {
+          "esperado": 26.5,
+          "obtido": 26.5,
+          "ok": true
+        },
+        "pct_atrasados_compras_mes_anterior": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "710e3548e02bc1d2831dfc4f1b5b14d4",
+        "pct_produto_errado": 41.8,
+        "cidade": "Rolândia"
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"710e3548e02bc1d2831dfc4f1b5b14d4\", \"pct_produto_errado\": 41.8, \"cidade\": \"Rolândia\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "produto_errado_ou_incompleto",
+            "min_avaliacoes": 50,
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "710e3548e02bc1d2831dfc4f1b5b14d4",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 2354,
+        "output_tokens": 151,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 8613
+      },
+      "custo_usd": 0.00708,
+      "segundos": 5.3,
+      "id": "q11",
+      "repeticao": 2,
+      "correta": false,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "710e3548e02bc1d2831dfc4f1b5b14d4",
+          "obtido": "710e3548e02bc1d2831dfc4f1b5b14d4",
+          "ok": true
+        },
+        "pct_produto_errado": {
+          "esperado": 41.8,
+          "obtido": 41.8,
+          "ok": true
+        },
+        "cidade": {
+          "esperado": "rolandia",
+          "obtido": "Rolândia",
+          "ok": false
+        }
+      }
+    },
+    {
+      "resposta": {
+        "pct_reclamacao_atraso_mg": 10.1,
+        "pct_reclamacao_atraso_sp": 11.4,
+        "pct_pedidos_atrasados_mg": 4.6,
+        "pct_pedidos_atrasados_sp": 4.5
+      },
+      "texto_final": "Não. Entre as avaliações com comentário classificadas, a proporção de reclamações por atraso ou não entrega foi menor em Minas Gerais (10,1%) do que em São Paulo (11,4%). Já entre os pedidos entregues, a taxa de atraso foi ligeiramente maior em Minas Gerais (4,6%) do que em São Paulo (4,5%).\n\nRESPOSTA: {\"pct_reclamacao_atraso_mg\": 10.1, \"pct_reclamacao_atraso_sp\": 11.4, \"pct_pedidos_atrasados_mg\": 4.6, \"pct_pedidos_atrasados_sp\": 4.5}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 4,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "MG"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "SP"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "MG"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "SP"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 362,
+        "output_tokens": 232,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 6463
+      },
+      "custo_usd": 0.00369,
+      "segundos": 4.9,
+      "id": "q12",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "pct_reclamacao_atraso_mg": {
+          "esperado": 10.1,
+          "obtido": 10.1,
+          "ok": true
+        },
+        "pct_reclamacao_atraso_sp": {
+          "esperado": 11.4,
+          "obtido": 11.4,
+          "ok": true
+        },
+        "pct_pedidos_atrasados_mg": {
+          "esperado": 4.6,
+          "obtido": 4.6,
+          "ok": true
+        },
+        "pct_pedidos_atrasados_sp": {
+          "esperado": 4.5,
+          "obtido": 4.5,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "pct_pedidos_atrasados": 7.4,
+        "motivo_negativas": "atraso_ou_nao_entrega"
+      },
+      "texto_final": "RESPOSTA: {\"pct_pedidos_atrasados\": 7.4, \"motivo_negativas\": \"atraso_ou_nao_entrega\"}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "categoria": "relogios_presentes"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "categoria": "relogios_presentes",
+            "nota_min": 1,
+            "nota_max": 2
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 362,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5823
+      },
+      "custo_usd": 0.0024,
+      "segundos": 3.5,
+      "id": "q13",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "pct_pedidos_atrasados": {
+          "esperado": 7.4,
+          "obtido": 7.4,
+          "ok": true
+        },
+        "motivo_negativas": {
+          "esperado": "atraso_ou_nao_entrega",
+          "obtido": "atraso_ou_nao_entrega",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "n_vendedores": 145
+      },
+      "texto_final": "RESPOSTA: {\"n_vendedores\": 145}",
+      "stop_reason": "completed",
+      "turnos": 6,
+      "n_chamadas": 7,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 5
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 200
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 125
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 150
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 175
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 137
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 7,
+            "offset": 144
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 8662,
+        "output_tokens": 391,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 29682
+      },
+      "custo_usd": 0.0242,
+      "segundos": 12.9,
+      "id": "q14",
+      "repeticao": 2,
+      "correta": true,
+      "chaves": {
+        "n_vendedores": {
+          "esperado": 145,
+          "obtido": 145,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "estado": "RJ",
+        "pct_reclamacao_atraso": 21.7,
+        "pct_pedidos_atrasados": 12.1
+      },
+      "texto_final": "RESPOSTA: {\"estado\": \"RJ\", \"pct_reclamacao_atraso\": 21.7, \"pct_pedidos_atrasados\": 12.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "estado_cliente",
+            "min_avaliacoes": 1000,
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "RJ"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9450
+      },
+      "custo_usd": 0.00316,
+      "segundos": 4.6,
+      "id": "q01",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "estado": {
+          "esperado": "RJ",
+          "obtido": "RJ",
+          "ok": true
+        },
+        "pct_reclamacao_atraso": {
+          "esperado": 21.7,
+          "obtido": 21.7,
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 12.1,
+          "obtido": 12.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "6560211a19b47992c3666cc44a7e94c0",
+        "nota_media": 3.94
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"6560211a19b47992c3666cc44a7e94c0\", \"nota_media\": 3.94}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "total",
+            "nota_min": 1,
+            "nota_max": 2,
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-12-31",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "6560211a19b47992c3666cc44a7e94c0",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 152,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10349
+      },
+      "custo_usd": 0.00364,
+      "segundos": 5.6,
+      "id": "q02",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "6560211a19b47992c3666cc44a7e94c0",
+          "obtido": "6560211a19b47992c3666cc44a7e94c0",
+          "ok": true
+        },
+        "nota_media": {
+          "esperado": 3.94,
+          "obtido": 3.94,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "categoria": "informatica_acessorios",
+        "pct_pedidos_atrasados": 6.4
+      },
+      "texto_final": "RESPOSTA: {\"categoria\": \"informatica_acessorios\", \"pct_pedidos_atrasados\": 6.4}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "categoria",
+            "limit": 100
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "categoria": "informatica_acessorios"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 83,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 43307
+      },
+      "custo_usd": 0.00625,
+      "segundos": 4.8,
+      "id": "q03",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "categoria": {
+          "esperado": "informatica_acessorios",
+          "obtido": "informatica_acessorios",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 6.4,
+          "obtido": 6.4,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "rota": "SP->RJ",
+        "pct_pedidos_atrasados": 14.1,
+        "motivo_sem_elogio": "atraso_ou_nao_entrega"
+      },
+      "texto_final": "RESPOSTA: {\"rota\": \"SP->RJ\", \"pct_pedidos_atrasados\": 14.1, \"motivo_sem_elogio\": \"atraso_ou_nao_entrega\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "agrupar_por": "rota",
+            "min_pedidos": 500,
+            "ordenar_por": "pct_atrasados",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "RJ"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 113,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9133
+      },
+      "custo_usd": 0.00313,
+      "segundos": 4.5,
+      "id": "q04",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "rota": {
+          "esperado": "SP->RJ",
+          "obtido": "SP->RJ",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        },
+        "motivo_sem_elogio": {
+          "esperado": "atraso_ou_nao_entrega",
+          "obtido": "atraso_ou_nao_entrega",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "fevereiro": 314,
+        "marco": 392,
+        "estado_mes_maior": "SP"
+      },
+      "texto_final": "RESPOSTA: {\"fevereiro\": 314, \"marco\": 392, \"estado_mes_maior\": \"SP\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "mes",
+            "data_inicio": "2018-02-01",
+            "data_fim": "2018-03-31"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "estado_cliente",
+            "data_inicio": "2018-03-01",
+            "data_fim": "2018-03-31",
+            "limit": 30
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 6619,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9627
+      },
+      "custo_usd": 0.01544,
+      "segundos": 5.0,
+      "id": "q05",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "fevereiro": {
+          "esperado": 314,
+          "obtido": 314,
+          "ok": true
+        },
+        "marco": {
+          "esperado": 392,
+          "obtido": 392,
+          "ok": true
+        },
+        "estado_mes_maior": {
+          "esperado": "SP",
+          "obtido": "SP",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+        "pct_pedidos_atrasados": 9.7
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"4a3ca9315b744ce9f8e9374361493884\", \"pct_pedidos_atrasados\": 9.7}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 4,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "total",
+            "limit": 3
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "6560211a19b47992c3666cc44a7e94c0"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "vendedor_id": "cc419e0650a3c5ba77189a1882b7556a"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 208,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10950
+      },
+      "custo_usd": 0.00426,
+      "segundos": 6.1,
+      "id": "q06",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "4a3ca9315b744ce9f8e9374361493884",
+          "obtido": "4a3ca9315b744ce9f8e9374361493884",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 9.7,
+          "obtido": 9.7,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "mes": "2018-03",
+        "pct_pedidos_atrasados": 9.4,
+        "vendedor_id": "4869f7a5dfa277a7dca6462dcf3b52b2",
+        "pct_vendedor": 20.0
+      },
+      "texto_final": "RESPOSTA: {\"mes\": \"2018-03\", \"pct_pedidos_atrasados\": 9.4, \"vendedor_id\": \"4869f7a5dfa277a7dca6462dcf3b52b2\", \"pct_vendedor\": 20.0}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "SP",
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-08-31",
+            "agrupar_por": "mes",
+            "ordenar_por": "pct_atrasados",
+            "limit": 8
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "SP",
+            "data_inicio": "2018-03-01",
+            "data_fim": "2018-03-31",
+            "agrupar_por": "vendedor",
+            "min_pedidos": 30,
+            "ordenar_por": "pct_atrasados",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 2430,
+        "output_tokens": 201,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9349
+      },
+      "custo_usd": 0.0078,
+      "segundos": 5.6,
+      "id": "q07",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "mes": {
+          "esperado": "2018-03",
+          "obtido": "2018-03",
+          "ok": true
+        },
+        "pct_pedidos_atrasados": {
+          "esperado": 9.4,
+          "obtido": 9.4,
+          "ok": true
+        },
+        "vendedor_id": {
+          "esperado": "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "obtido": "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "ok": true
+        },
+        "pct_vendedor": {
+          "esperado": 20.0,
+          "obtido": 20.0,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "categoria": "cama_mesa_banho",
+        "pct_qualidade_abaixo": 14.1
+      },
+      "texto_final": "RESPOSTA: {\"categoria\": \"cama_mesa_banho\", \"pct_qualidade_abaixo\": 14.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "vendedor_id": "4a3ca9315b744ce9f8e9374361493884",
+            "categoria": "cama_mesa_banho"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 124,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10428
+      },
+      "custo_usd": 0.00337,
+      "segundos": 5.0,
+      "id": "q08",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "categoria": {
+          "esperado": "cama_mesa_banho",
+          "obtido": "cama_mesa_banho",
+          "ok": true
+        },
+        "pct_qualidade_abaixo": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "motivo": "defeito_ou_avaria",
+        "n_avaliacoes": 91
+      },
+      "texto_final": "RESPOSTA: {\"motivo\": \"defeito_ou_avaria\", \"n_avaliacoes\": 91}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_classify_review",
+          "args": {
+            "texto": "O produto chegou todo quebrado e a loja não responde minhas mensagens"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "RJ",
+            "nota_min": 1,
+            "nota_max": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 362,
+        "output_tokens": 104,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5867
+      },
+      "custo_usd": 0.00235,
+      "segundos": 3.1,
+      "id": "q09",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "motivo": {
+          "esperado": "defeito_ou_avaria",
+          "obtido": "defeito_ou_avaria",
+          "ok": true
+        },
+        "n_avaliacoes": {
+          "esperado": 91,
+          "obtido": 91,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "mes": "2018-03",
+        "pct_reclamacao_atraso": 26.5,
+        "pct_atrasados_compras_mes_anterior": 14.1
+      },
+      "texto_final": "RESPOSTA: {\"mes\": \"2018-03\", \"pct_reclamacao_atraso\": 26.5, \"pct_atrasados_compras_mes_anterior\": 14.1}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "mes",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "data_inicio": "2018-01-01",
+            "data_fim": "2018-12-31",
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "data_inicio": "2018-02-01",
+            "data_fim": "2018-02-28"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 146,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 9504
+      },
+      "custo_usd": 0.0035,
+      "segundos": 5.2,
+      "id": "q10",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "mes": {
+          "esperado": "2018-03",
+          "obtido": "2018-03",
+          "ok": true
+        },
+        "pct_reclamacao_atraso": {
+          "esperado": 26.5,
+          "obtido": 26.5,
+          "ok": true
+        },
+        "pct_atrasados_compras_mes_anterior": {
+          "esperado": 14.1,
+          "obtido": 14.1,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "vendedor_id": "710e3548e02bc1d2831dfc4f1b5b14d4",
+        "pct_produto_errado": 41.8,
+        "cidade": "rolandia"
+      },
+      "texto_final": "RESPOSTA: {\"vendedor_id\": \"710e3548e02bc1d2831dfc4f1b5b14d4\", \"pct_produto_errado\": 41.8, \"cidade\": \"rolandia\"}",
+      "stop_reason": "completed",
+      "turnos": 3,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "produto_errado_ou_incompleto",
+            "min_avaliacoes": 50,
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_seller_profile",
+          "args": {
+            "vendedor_id": "710e3548e02bc1d2831dfc4f1b5b14d4",
+            "limit": 1
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 543,
+        "output_tokens": 152,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 10424
+      },
+      "custo_usd": 0.00365,
+      "segundos": 5.1,
+      "id": "q11",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "vendedor_id": {
+          "esperado": "710e3548e02bc1d2831dfc4f1b5b14d4",
+          "obtido": "710e3548e02bc1d2831dfc4f1b5b14d4",
+          "ok": true
+        },
+        "pct_produto_errado": {
+          "esperado": 41.8,
+          "obtido": 41.8,
+          "ok": true
+        },
+        "cidade": {
+          "esperado": "rolandia",
+          "obtido": "rolandia",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "pct_reclamacao_atraso_mg": 10.1,
+        "pct_reclamacao_atraso_sp": 11.4,
+        "pct_pedidos_atrasados_mg": 4.6,
+        "pct_pedidos_atrasados_sp": 4.5
+      },
+      "texto_final": "Não. Entre as avaliações com comentário classificadas, a proporção de reclamações de atraso ou não entrega foi menor em Minas Gerais (10,1%) do que em São Paulo (11,4%). Já entre os pedidos efetivamente entregues, a taxa de atraso foi ligeiramente maior em Minas Gerais (4,6%) do que em São Paulo (4,5%).\n\nRESPOSTA: {\"pct_reclamacao_atraso_mg\": 10.1, \"pct_reclamacao_atraso_sp\": 11.4, \"pct_pedidos_atrasados_mg\": 4.6, \"pct_pedidos_atrasados_sp\": 4.5}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 4,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "MG"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "estado_cliente": "SP"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "MG"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "estado_cliente": "SP"
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 362,
+        "output_tokens": 234,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 6463
+      },
+      "custo_usd": 0.00371,
+      "segundos": 5.1,
+      "id": "q12",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "pct_reclamacao_atraso_mg": {
+          "esperado": 10.1,
+          "obtido": 10.1,
+          "ok": true
+        },
+        "pct_reclamacao_atraso_sp": {
+          "esperado": 11.4,
+          "obtido": 11.4,
+          "ok": true
+        },
+        "pct_pedidos_atrasados_mg": {
+          "esperado": 4.6,
+          "obtido": 4.6,
+          "ok": true
+        },
+        "pct_pedidos_atrasados_sp": {
+          "esperado": 4.5,
+          "obtido": 4.5,
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "pct_pedidos_atrasados": 7.4,
+        "motivo_negativas": "atraso_ou_nao_entrega"
+      },
+      "texto_final": "RESPOSTA: {\"pct_pedidos_atrasados\": 7.4, \"motivo_negativas\": \"atraso_ou_nao_entrega\"}",
+      "stop_reason": "completed",
+      "turnos": 2,
+      "n_chamadas": 2,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_delivery_delay_stats",
+          "args": {
+            "categoria": "relogios_presentes"
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "categoria": "relogios_presentes",
+            "nota_min": 1,
+            "nota_max": 2
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 362,
+        "output_tokens": 109,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 5823
+      },
+      "custo_usd": 0.0024,
+      "segundos": 3.2,
+      "id": "q13",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "pct_pedidos_atrasados": {
+          "esperado": 7.4,
+          "obtido": 7.4,
+          "ok": true
+        },
+        "motivo_negativas": {
+          "esperado": "atraso_ou_nao_entrega",
+          "obtido": "atraso_ou_nao_entrega",
+          "ok": true
+        }
+      }
+    },
+    {
+      "resposta": {
+        "n_vendedores": 145
+      },
+      "texto_final": "RESPOSTA: {\"n_vendedores\": 145}",
+      "stop_reason": "completed",
+      "turnos": 6,
+      "n_chamadas": 9,
+      "erros_ferramenta": 0,
+      "chamadas": [
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 100
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 200
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 300
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 140
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 160
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 1,
+            "offset": 180
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 6,
+            "offset": 149
+          },
+          "erro": false
+        },
+        {
+          "ferramenta": "cx_reason_breakdown",
+          "args": {
+            "agrupar_por": "vendedor",
+            "ordenar_por": "atraso_ou_nao_entrega",
+            "min_avaliacoes": 5,
+            "limit": 9,
+            "offset": 141
+          },
+          "erro": false
+        }
+      ],
+      "fallback": false,
+      "uso": {
+        "input_tokens": 10811,
+        "output_tokens": 505,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 30844
+      },
+      "custo_usd": 0.02976,
+      "segundos": 14.0,
+      "id": "q14",
+      "repeticao": 3,
+      "correta": true,
+      "chaves": {
+        "n_vendedores": {
+          "esperado": 145,
+          "obtido": 145,
+          "ok": true
+        }
+      }
+    }
+  ]
+}
