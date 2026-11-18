@@ -150,8 +150,8 @@ async def main() -> None:
     args = ap.parse_args()
 
     load_dotenv(RAIZ / ".env")
-    if not os.getenv("ANTHROPIC_API_KEY"):
-        sys.exit("defina ANTHROPIC_API_KEY no .env (veja .env.example)")
+    if os.getenv("ANTHROPIC_API_KEY") == "":
+        del os.environ["ANTHROPIC_API_KEY"]  # vazio no .env não deve esconder um login do `ant auth login`
     ids = set(filter(None, args.perguntas.split(",")))
     selecionadas = [p for p in PERGUNTAS if not ids or p["id"] in ids]
     gabarito = calcular_gabarito()
@@ -201,4 +201,7 @@ async def main() -> None:
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except anthropic.AuthenticationError:
+        sys.exit("sem credencial válida: defina ANTHROPIC_API_KEY no .env ou rode `ant auth login`")
