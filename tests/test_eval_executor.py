@@ -75,3 +75,46 @@ async def test_loop_com_servidor_real(servidor):
     kw = modelo.pedidos[0]
     assert kw["output_config"] == {"effort": "medium"} and kw["cache_control"] == {"type": "ephemeral"}
     assert kw["fallbacks"] == "default" and kw["betas"] == [rodar.FALLBACK_BETA]
+
+
+class OpenAIFalso:
+    """Responses API falsa: pede duas ferramentas (uma com JSON quebrado), depois responde."""
+
+    def __init__(self):
+        self.pedidos = []
+        self.responses = NS(create=self._create)
+
+    async def _create(self, **kw):
+        self.pedidos.append({**kw, "input": list(kw["input"])})
+        uso = NS(input_tokens=100, input_tokens_details=NS(cached_tokens=40), output_tokens=50)
+        if len(self.pedidos) == 1:
+            return NS(status="completed", usage=uso, output_text="", output=[
+                NS(type="reasoning", id="rs1"),
+                NS(type="function_call", name="cx_reason_breakdown", arguments="{}", call_id="c1"),
+                NS(type="function_call", name="cx_search_reviews", arguments="{quebrado", call_id="c2")])
+        return NS(status="completed", usage=uso, output=[NS(type="message")],
+                  output_text='Total 5.\nRESPOSTA: {"total": 5}')
+
+
+async def test_loop_openai_com_servidor_real(servidor):
+    modelo = OpenAIFalso()
+    args = NS(modelo="gpt-6.2-sol", esforco="medium", max_turnos=5)
+    pergunta = {"pergunta": "Quantas avaliações classificadas?", "chaves": {"total": 0}}
+    async with Client(servidor) as mcp:
+        ferramentas = [{"name": t.name, "description": t.description, "input_schema": t.input_schema}
+                       for t in (await mcp.list_tools()).tools]
+        r = await rodar.responder(modelo, mcp, ferramentas, pergunta, args)
+
+    assert r["resposta"] == {"total": 5} and (r["turnos"], r["n_chamadas"], r["erros_ferramenta"]) == (2, 2, 1)
+    # cached_tokens sai da entrada cheia e entra como leitura de cache
+    assert r["uso"]["input_tokens"] == 120 and r["uso"]["cache_read_input_tokens"] == 80
+    entrada = modelo.pedidos[1]["input"]
+    assert [getattr(x, "type", None) for x in entrada[1:4]] == ["reasoning", "function_call", "function_call"]
+    saidas = [x for x in entrada if isinstance(x, dict) and x.get("type") == "function_call_output"]
+    assert [s["call_id"] for s in saidas] == ["c1", "c2"]
+    assert '"total_classificadas": 5' in saidas[0]["output"]
+    assert saidas[1]["output"].startswith("ERRO DA FERRAMENTA: argumentos não são um JSON válido")
+    kw = modelo.pedidos[0]
+    assert kw["store"] is False and kw["include"] == ["reasoning.encrypted_content"]
+    assert kw["reasoning"] == {"effort": "medium"}
+    assert kw["tools"][0]["type"] == "function" and kw["tools"][0]["strict"] is False
