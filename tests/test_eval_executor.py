@@ -26,6 +26,9 @@ def test_corrigir_texto_e_tolerancia():
     r = rodar.corrigir({"estado": "RJ", "pct": 21.4, "n": 90}, gab, chaves)
     assert not r["correta"] and not r["chaves"]["pct"]["ok"] and not r["chaves"]["n"]["ok"]
     assert not rodar.corrigir(None, gab, chaves)["correta"]
+    # acento e caixa não contam (o dataset grava "rolandia"); outra cidade continua errada
+    assert rodar.corrigir({"cidade": "Rolândia"}, {"cidade": "rolandia"}, {"cidade": "texto"})["correta"]
+    assert not rodar.corrigir({"cidade": "Londrina"}, {"cidade": "rolandia"}, {"cidade": "texto"})["correta"]
 
 
 def test_custo():

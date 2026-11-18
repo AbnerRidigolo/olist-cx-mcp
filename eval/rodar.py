@@ -83,12 +83,20 @@ def extrair_resposta(texto: str) -> dict | None:
         return None
 
 
+def _normalizar(texto: str) -> str:
+    """Compara textos sem caixa, espaços nas pontas e acentos (o dataset grava cidades sem acento)."""
+    import unicodedata
+
+    sem_acento = unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode()
+    return sem_acento.strip().lower()
+
+
 def corrigir(resposta: dict | None, gabarito: dict, chaves: dict) -> dict:
     detalhes = {}
     for k, tipo in chaves.items():
         esperado, obtido = gabarito[k], (resposta or {}).get(k)
         if tipo == "texto":
-            ok = isinstance(obtido, str) and obtido.strip().lower() == str(esperado).strip().lower()
+            ok = isinstance(obtido, str) and _normalizar(obtido) == _normalizar(str(esperado))
         else:
             try:
                 ok = abs(float(obtido) - float(esperado)) <= tipo + 1e-9
