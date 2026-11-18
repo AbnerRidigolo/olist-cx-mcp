@@ -1,2 +1,5 @@
 -r requirements.txt
 pytest==9.2.0
+# Fase 3: avaliação com um modelo como cliente MCP
+openai==3.46.0
+anthropic==2.5.0
